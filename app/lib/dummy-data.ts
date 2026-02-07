@@ -40,11 +40,6 @@ export const quickLinks = [
   { title: "Career Advising", href: "https://career.fsu.edu/advising", description: "Professional guidance", icon: "👥" },
 ];
 
-export const rewards = [
-  { name: "FSU football tickets", points: 500, unlocked: false, icon: "🏈" },
-  { name: "LinkedIn Premium (1 mo)", points: 800, unlocked: false, icon: "💎" },
-  { name: "Campus perks pack", points: 300, unlocked: true, icon: "🎁" },
-];
 
 export const pageResources = {
   resume: [

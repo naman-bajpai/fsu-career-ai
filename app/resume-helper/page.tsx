@@ -46,23 +46,11 @@ const initialSuggestions: Suggestion[] = [
 import { ResourcesSidebar } from "../components/ResourcesSidebar";
 
 export default function ResumeHelperPage() {
-  const [summary, setSummary] = useState("Student looking for internships");
-  const [experience, setExperience] = useState([
-    "Worked on frontend features for the internal dashboard.",
-    "Improved site performance and fixed bugs.",
-    "Collaborated with the design team to implement new UI/UX components.",
-  ]);
   const [suggestions, setSuggestions] = useState(initialSuggestions);
   const [atsScore, setAtsScore] = useState(student.atsScore);
 
   const applySuggestion = (suggestion: Suggestion) => {
-    if (suggestion.section === "summary") {
-      setSummary(suggestion.suggested);
-    } else if (suggestion.section === "experience" && suggestion.index !== undefined) {
-      const newExperience = [...experience];
-      newExperience[suggestion.index] = suggestion.suggested;
-      setExperience(newExperience);
-    }
+    // Logic disabled as resume is now a PDF viewer
     setSuggestions(suggestions.filter((s) => s.id !== suggestion.id));
     setAtsScore((prev) => Math.min(100, prev + 5));
   };
@@ -136,7 +124,7 @@ export default function ResumeHelperPage() {
               <span className="h-3 w-3 rounded-full bg-red-400"></span>
               <span className="h-3 w-3 rounded-full bg-yellow-400"></span>
               <span className="h-3 w-3 rounded-full bg-green-400"></span>
-              <span className="ml-4 text-xs font-bold text-game-text-muted uppercase tracking-widest">JORDAN_RESUME_V4.PDF</span>
+              <span className="ml-4 text-xs font-bold text-game-text-muted uppercase tracking-widest">RESUME1.PDF</span>
             </div>
             <div className="flex items-center gap-4 text-xs font-black uppercase text-garnet">
               <button className="hover:underline">Export PDF</button>
@@ -144,89 +132,12 @@ export default function ResumeHelperPage() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto bg-gray-100 p-12">
-            <div className="mx-auto max-w-2xl bg-white shadow-2xl p-16 font-serif text-sm">
-              <div className="text-center border-b border-black pb-8 mb-8">
-                <h2 className="text-3xl font-black uppercase tracking-tight text-black">{student.name.toUpperCase()}</h2>
-                <p className="mt-2 font-medium">Tallahassee, FL | jordan@fsu.edu | (850) 123-4567</p>
-                <div className="flex justify-center gap-4 mt-2 font-bold text-blue-700 underline underline-offset-4">
-                  <a href="#">LinkedIn</a>
-                  <a href="#">GitHub</a>
-                  <a href="#">Portfolio</a>
-                </div>
-              </div>
-
-              {/* Summary */}
-              <section className="mb-8">
-                <h3 className="font-black border-b border-black mb-3 uppercase tracking-widest text-xs">Professional Summary</h3>
-                <textarea
-                  value={summary}
-                  onChange={(e) => setSummary(e.target.value)}
-                  className="w-full bg-transparent resize-none focus:outline-none focus:bg-yellow-50 p-1 rounded transition-colors"
-                  spellCheck={false}
-                  rows={2}
-                />
-              </section>
-
-              {/* Experience */}
-              <section className="mb-8">
-                <h3 className="font-black border-b border-black mb-4 uppercase tracking-widest text-xs">Technical Experience</h3>
-
-                <div className="mb-6">
-                  <div className="flex justify-between items-baseline mb-1">
-                    <h4 className="font-black text-black">TechCorp Inc.</h4>
-                    <span className="text-[10px] font-bold">Tallahassee, FL</span>
-                  </div>
-                  <div className="flex justify-between items-baseline mb-2 italic">
-                    <span className="font-bold">Software Development Intern</span>
-                    <span className="text-[10px] font-bold">Jan 2026 – Present</span>
-                  </div>
-                  <ul className="list-disc pl-5 space-y-2">
-                    {experience.map((bullet, i) => (
-                      <li key={i} className="group relative">
-                        <textarea
-                          value={bullet}
-                          onChange={(e) => {
-                            const next = [...experience];
-                            next[i] = e.target.value;
-                            setExperience(next);
-                          }}
-                          className="w-full bg-transparent resize-none focus:outline-none focus:bg-yellow-50 p-1 rounded transition-colors"
-                          spellCheck={false}
-                          rows={2}
-                        />
-                        {suggestions.find(s => s.section === "experience" && s.index === i) && (
-                          <div className="absolute -left-7 top-2 text-blue-500 animate-bounce">✨</div>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </section>
-
-              {/* Education */}
-              <section className="mb-8">
-                <h3 className="font-black border-b border-black mb-4 uppercase tracking-widest text-xs">Education</h3>
-                <div className="flex justify-between items-baseline">
-                  <h4 className="font-black text-black">Florida State University</h4>
-                  <span className="text-[10px] font-bold italic">Expected graduation: May 2027</span>
-                </div>
-                <div className="flex justify-between items-baseline mt-1">
-                  <span className="font-bold">Bachelor of Science in Computer Science</span>
-                  <span className="text-[10px] font-bold font-serif">GPA: 3.8 / 4.0</span>
-                </div>
-              </section>
-
-              {/* Technical Skills */}
-              <section>
-                <h3 className="font-black border-b border-black mb-3 uppercase tracking-widest text-xs">Technical Skills</h3>
-                <p className="font-medium">
-                  <span className="font-black">Langs:</span> JavaScript (ES6+), TypeScript, Python, Java, SQL <br />
-                  <span className="font-black">Frameworks:</span> Next.js, React, Tailwind CSS, Node.js, Express <br />
-                  <span className="font-black">Tools:</span> Git, Docker, AWS (Lambda, S3), Jira
-                </p>
-              </section>
-            </div>
+          <div className="flex-1 overflow-hidden bg-gray-100">
+            <iframe
+              src="/Resume1.pdf"
+              className="w-full h-full border-none"
+              title="Resume Preview"
+            />
           </div>
         </main>
       </div>
