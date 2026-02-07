@@ -11,43 +11,54 @@ export default function RoadmapPage() {
     <div className="min-h-screen bg-background text-foreground relative lg:pr-80">
       <main className="mx-auto max-w-lg px-6 pb-32 pt-12">
         {/* Daily Progress Card */}
-        <section className="card-glass mb-10 overflow-hidden p-6 animate-in slide-in-from-top duration-500">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-black text-garnet uppercase tracking-tighter">Daily Goal</h2>
-            <span className="text-sm font-black text-gold">
-              {student.dailyXpEarned}/{student.dailyGoalXp} XP
-            </span>
+        <section className="card-glass mb-14 overflow-hidden p-8 animate-in slide-in-from-top duration-700">
+          <div className="mb-6 flex items-center justify-between">
+            <div>
+              <h2 className="text-xl font-black text-garnet uppercase tracking-tighter">Daily Mission</h2>
+              <p className="text-[10px] font-black text-game-text-muted uppercase tracking-widest mt-1">XP Surge Active ⚡</p>
+            </div>
+            <div className="text-right">
+              <span className="text-2xl font-black text-gold">
+                {student.dailyXpEarned}
+              </span>
+              <span className="text-xs font-black text-game-text-muted">/{student.dailyGoalXp} XP</span>
+            </div>
           </div>
-          <div className="progress-container h-3">
+          <div className="progress-container h-4 shadow-inner">
             <div
-              className="progress-fill !bg-gold"
+              className="progress-fill !bg-gradient-to-r !from-gold !to-gold-dark"
               style={{ width: `${dailyProgress}%` }}
             />
           </div>
-          <p className="mt-3 text-xs font-black uppercase text-game-text-muted tracking-tight">
+          <p className="mt-4 text-xs font-bold text-garnet leading-tight">
             {student.dailyXpEarned >= student.dailyGoalXp
-              ? "Goal reached! You're crushing it! 🏹"
-              : "Just a little more to level up today!"}
+              ? "Mission Accomplished! You've secured today's growth. 🏹"
+              : "Just a few more actions to reach your daily peak!"}
           </p>
         </section>
 
-        {/* Badges Collection - NEW */}
-        <section className="mb-16">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-sm font-black uppercase text-garnet tracking-[0.2em]">Badges Earned</h2>
-            <span className="text-xs font-bold text-gold uppercase">{badges.filter(b => b.unlocked).length}/{badges.length}</span>
+        {/* Badges Collection */}
+        <section className="mb-20">
+          <div className="flex items-center justify-between mb-8 px-2">
+            <h2 className="text-xs font-black uppercase text-garnet tracking-[0.3em]">Achievements</h2>
+            <span className="bg-gold/20 text-gold px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-gold/30">
+              {badges.filter(b => b.unlocked).length} / {badges.length} Unlocked
+            </span>
           </div>
-          <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+          <div className="flex gap-6 overflow-x-auto pb-6 no-scrollbar mask-fade-right">
             {badges.map((badge) => (
               <div
                 key={badge.id}
-                className={`flex-shrink-0 flex flex-col items-center gap-2 p-4 rounded-3xl border-2 transition-all ${badge.unlocked
-                    ? "border-gold bg-gold/10 scale-100 shadow-lg shadow-gold/5"
-                    : "border-game-border bg-gray-50 opacity-40 grayscale"
+                className={`flex-shrink-0 flex flex-col items-center gap-3 p-6 rounded-[2rem] border-4 transition-all hover:scale-105 ${badge.unlocked
+                  ? "border-gold bg-white shadow-xl shadow-gold/10"
+                  : "border-game-border bg-gray-50/50 opacity-40 grayscale"
                   }`}
               >
-                <span className="text-4xl">{badge.icon}</span>
-                <span className="text-[10px] font-black uppercase text-center w-20 leading-tight">
+                <div className="relative">
+                  <span className="text-5xl block">{badge.icon}</span>
+                  {badge.unlocked && <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white"></div>}
+                </div>
+                <span className="text-[10px] font-black uppercase text-center w-24 leading-tight tracking-tighter text-garnet">
                   {badge.name}
                 </span>
               </div>
@@ -57,55 +68,61 @@ export default function RoadmapPage() {
 
         {/* The Path - Duolingo Curvy Style */}
         <section className="relative mb-8 flex flex-col items-center">
-          <div className="mb-12 w-full">
-            <h2 className="text-center text-2xl font-black uppercase tracking-[0.2em] text-garnet/30">
-              Career Path
+          <div className="mb-20 w-full relative">
+            <div className="absolute inset-0 flex items-center" aria-hidden="true">
+              <div className="w-full border-t-4 border-game-border border-dashed opacity-30"></div>
+            </div>
+            <h2 className="relative bg-background px-6 mx-auto w-fit text-center text-3xl font-black uppercase tracking-[0.3em] text-garnet/20 italic">
+              The Ascent
             </h2>
           </div>
 
-          <div className="relative flex w-full flex-col items-center gap-16">
+          <div className="relative flex w-full flex-col items-center gap-20">
+            {/* SVG Connector Path would go here in a more advanced version */}
             {milestones.map((m, i) => {
               const isDone = m.done;
               const isNext = nextMilestone?.id === m.id;
               const isLocked = !isDone && !isNext && milestones.slice(0, i).some((prev) => !prev.done);
 
-              // Alternating horizontal offset for the curvy path
-              const offsets = ["0px", "60px", "0px", "-60px"];
+              const offsets = ["0px", "80px", "0px", "-80px"];
               const offset = offsets[i % offsets.length];
 
               return (
                 <div
                   key={m.id}
-                  className="relative flex flex-col items-center"
+                  className="relative flex flex-col items-center group"
                   style={{ transform: `translateX(${offset})` }}
                 >
                   <Link
                     href={isLocked ? "#" : m.href}
-                    className={`group relative flex h-24 w-24 items-center justify-center rounded-[2rem] transition-all duration-200 ${isDone
-                      ? "bg-gold text-white shadow-[0_8px_0_0_#b5a072] active:translate-y-[2px] active:shadow-[0_6px_0_0_#b5a072]"
+                    className={`relative flex h-28 w-28 items-center justify-center rounded-[2.5rem] border-4 transition-all duration-300 ${isDone
+                      ? "bg-gold border-gold-dark text-white shadow-[0_10px_0_0_hsl(42,42%,58%)]"
                       : isNext
-                        ? "bg-garnet text-white shadow-[0_8px_0_0_#5a2330] active:translate-y-[2px] active:shadow-[0_6px_0_0_#5a2330]"
-                        : "bg-game-border text-game-text-muted shadow-[0_8px_0_0_#d1d1d1]"
-                      } ${isLocked ? "cursor-not-allowed grayscale" : "hover:scale-110 active:scale-95"}`}
+                        ? "bg-garnet border-garnet-dark text-white shadow-[0_10px_0_0_hsl(346,43%,25%)] animate-bounce-subtle"
+                        : "bg-white border-game-border text-game-text-muted shadow-[0_10px_0_0_hsl(220,13%,85%)]"
+                      } ${isLocked ? "cursor-not-allowed grayscale-[0.8] opacity-60" : "hover:scale-110 active:translate-y-2 active:shadow-none"}`}
                   >
-                    <span className="text-4xl">{isDone ? "✓" : m.icon}</span>
+                    <span className="text-5xl drop-shadow-lg">{isDone ? "✓" : m.icon}</span>
 
-                    {/* Badge Indicator on Milestone */}
                     {m.badgeId && (
-                      <div className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-white border-4 border-gold text-xs shadow-lg animate-pulse">
+                      <div className="absolute -top-3 -right-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-white border-4 border-gold text-lg shadow-xl animate-pulse z-10">
                         🎖️
                       </div>
                     )}
 
-                    {/* Tooltip-style Label */}
-                    <div className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xl bg-foreground px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white opacity-0 transition-opacity group-hover:opacity-100 shadow-xl">
-                      {m.label}
-                      <div className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 bg-foreground" />
-                    </div>
+                    {/* Progress floating label for active task */}
+                    {isNext && (
+                      <div className="absolute -top-16 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-2xl bg-garnet px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-2xl animate-in slide-in-from-bottom-2">
+                        START MISSION
+                        <div className="absolute -bottom-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 bg-garnet" />
+                      </div>
+                    )}
                   </Link>
-                  <p className="mt-6 text-center text-[10px] font-black uppercase tracking-widest text-game-text-muted/60">
-                    {m.id.replace("-", " ")}
-                  </p>
+                  <div className="mt-8 text-center max-w-[120px]">
+                    <p className={`text-[10px] font-black uppercase tracking-[0.2em] ${isLocked ? "text-game-text-muted/40" : "text-garnet"}`}>
+                      {m.label}
+                    </p>
+                  </div>
                 </div>
               );
             })}
