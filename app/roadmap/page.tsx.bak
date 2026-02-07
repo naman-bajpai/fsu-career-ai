@@ -1,0 +1,72 @@
+import Link from "next/link";
+import { milestones } from "../lib/dummy-data";
+
+export default function RoadmapPage() {
+  const completed = milestones.filter((m) => m.done).length;
+  const totalPoints = milestones.reduce((a, m) => a + (m.done ? m.points : 0), 0);
+
+  return (
+    <div className="min-h-screen bg-[var(--background)]">
+      <main className="mx-auto max-w-lg px-4 pb-24 pt-6">
+        <h1 className="text-2xl font-extrabold text-[var(--foreground)]">Your path 🛤️</h1>
+        <p className="mt-1 text-[var(--game-text-muted)]">Level up step by step</p>
+
+        {/* Stats card */}
+        <section className="my-6 flex items-center justify-between rounded-2xl border-2 border-[var(--game-border)] bg-[var(--game-white)] p-4 shadow-sm">
+          <div>
+            <p className="text-3xl font-extrabold text-[var(--game-green)]">{completed}/{milestones.length}</p>
+            <p className="text-sm text-[var(--game-text-muted)]">completed</p>
+          </div>
+          <div className="text-right">
+            <p className="text-2xl font-extrabold text-[var(--game-orange)]">+{totalPoints} XP</p>
+            <p className="text-sm text-[var(--game-text-muted)]">earned</p>
+          </div>
+        </section>
+
+        {/* Path nodes */}
+        <div className="relative rounded-2xl border-2 border-[var(--game-border)] bg-[var(--game-white)] p-4 shadow-sm">
+          <div className="absolute left-8 top-10 bottom-10 w-1 rounded-full bg-[var(--game-border)]" aria-hidden />
+          <ul className="relative space-y-2">
+            {milestones.map((m, i) => {
+              const isDone = m.done;
+              const isNext = !isDone && milestones.slice(0, i).every((p) => p.done);
+              return (
+                <li key={m.id}>
+                  <Link
+                    href={m.href}
+                    className={`flex items-center gap-3 rounded-xl p-3 transition-all hover:bg-[var(--background)] ${
+                      isDone ? "opacity-90" : ""
+                    }`}
+                  >
+                    <span
+                      className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl font-bold ${
+                        isDone ? "path-node-done" : isNext ? "path-node-current" : "path-node-locked"
+                      }`}
+                    >
+                      {isDone ? "✓" : m.icon}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className={`font-bold ${isDone ? "text-[var(--game-text-muted)] line-through" : "text-[var(--foreground)]"}`}>
+                        {m.label}
+                      </p>
+                      <p className="text-xs text-[var(--game-text-muted)]">+{m.points} XP</p>
+                    </div>
+                    {isDone ? (
+                      <span className="rounded-full bg-[var(--game-green)] px-3 py-1 text-xs font-bold text-white">DONE</span>
+                    ) : isNext ? (
+                      <span className="rounded-full bg-[var(--game-orange)] px-3 py-1 text-xs font-bold text-white">START</span>
+                    ) : null}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <p className="mt-6 text-center text-sm text-[var(--game-text-muted)]">
+          Complete each step to earn XP and unlock the next.
+        </p>
+      </main>
+    </div>
+  );
+}

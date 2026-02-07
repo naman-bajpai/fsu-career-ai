@@ -1,26 +1,160 @@
 @import "tailwindcss";
 
+/* FSU Gaming Theme Palette */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdfdfd;
+  --foreground: #2d2926;
+  --fsu-garnet: #782f40;
+  --fsu-garnet-dark: #5a2330;
+  --fsu-gold: #ceb888;
+  --fsu-gold-dark: #b5a072;
+  --game-white: #ffffff;
+  --game-border: #e5e5e5;
+  --game-text-muted: #77706d;
+
+  /* Status Colors (keep Duolingo feel but use FSU palette where possible) */
+  --game-green: #58cc02;
+  --game-green-dark: #46a302;
+  --game-orange: #ff9600;
+  --game-blue: #1cb0f6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-garnet: var(--fsu-garnet);
+  --color-gold: var(--fsu-gold);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
+  padding-bottom: 5rem;
+}
+
+/* Duolingo-style "3D" Buttons */
+.btn-game {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 1rem;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.btn-game-primary {
+  background: var(--fsu-garnet);
+  color: white;
+  box-shadow: 0 4px 0 0 var(--fsu-garnet-dark);
+}
+
+.btn-game-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-game-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 0 var(--fsu-garnet-dark);
+}
+
+.btn-game-secondary {
+  background: var(--game-white);
+  color: var(--fsu-garnet);
+  border: 2px solid var(--game-border);
+  box-shadow: 0 4px 0 0 var(--game-border);
+}
+
+.btn-game-secondary:hover {
+  background: #f8f8f8;
+}
+
+.btn-game-secondary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 0 var(--game-border);
+}
+
+/* Progress Bar */
+.progress-container {
+  height: 1rem;
+  background: var(--game-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--fsu-gold);
+  border-radius: 999px;
+  transition: width 0.3s ease-out;
+}
+
+/* Glassmorphism Cards */
+.card-glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--game-border);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(120, 47, 64, 0.05);
+}
+
+/* Swipe Button Animation */
+.swipe-button-container {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 64px;
+  background: var(--game-border);
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  overflow: hidden;
+  border-bottom: 4px solid #d1d1d1;
+}
+
+.swipe-button-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--fsu-garnet);
+  border-radius: 32px;
+  pointer-events: none;
+  transition: width 0.1s ease-out;
+}
+
+.swipe-button-handle {
+  position: relative;
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease-out;
+}
+
+.swipe-button-handle:active {
+  cursor: grabbing;
+}
+
+.swipe-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--game-text-muted);
+  pointer-events: none;
+  z-index: 5;
 }
