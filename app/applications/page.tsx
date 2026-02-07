@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { applications, student } from "../lib/dummy-data";
+import { ResourcesSidebar } from "../components/ResourcesSidebar";
 
 function statusStyle(status: string) {
   if (status === "Interview Scheduled") return "bg-[var(--game-orange)]/20 text-[var(--game-orange-dark)]";
@@ -10,7 +11,7 @@ function statusStyle(status: string) {
 
 export default function ApplicationsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground lg:pr-80">
       <main className="mx-auto max-w-lg px-6 pb-24 pt-12">
         <h1 className="text-2xl font-black text-garnet uppercase tracking-tighter">Your Pipeline 📋</h1>
         <p className="mt-1 text-xs font-black uppercase text-game-text-muted">Hunting for the perfect seat</p>
@@ -46,6 +47,7 @@ export default function ApplicationsPage() {
           </div>
         </section>
       </main>
+      <ResourcesSidebar page="applications" />
     </div>
   );
 }

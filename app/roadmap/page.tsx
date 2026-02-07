@@ -1,15 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { student, milestones, quickLinks } from "../lib/dummy-data";
-import { ChatSidebar } from "../components/ChatSidebar";
+import { student, milestones, quickLinks, badges } from "../lib/dummy-data";
 
 export default function RoadmapPage() {
   const nextMilestone = milestones.find((m) => !m.done);
   const dailyProgress = Math.min(100, (student.dailyXpEarned / student.dailyGoalXp) * 100);
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative">
+    <div className="min-h-screen bg-background text-foreground relative lg:pr-80">
       <main className="mx-auto max-w-lg px-6 pb-32 pt-12">
         {/* Daily Progress Card */}
         <section className="card-glass mb-10 overflow-hidden p-6 animate-in slide-in-from-top duration-500">
@@ -30,6 +29,30 @@ export default function RoadmapPage() {
               ? "Goal reached! You're crushing it! 🏹"
               : "Just a little more to level up today!"}
           </p>
+        </section>
+
+        {/* Badges Collection - NEW */}
+        <section className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-sm font-black uppercase text-garnet tracking-[0.2em]">Badges Earned</h2>
+            <span className="text-xs font-bold text-gold uppercase">{badges.filter(b => b.unlocked).length}/{badges.length}</span>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+            {badges.map((badge) => (
+              <div
+                key={badge.id}
+                className={`flex-shrink-0 flex flex-col items-center gap-2 p-4 rounded-3xl border-2 transition-all ${badge.unlocked
+                    ? "border-gold bg-gold/10 scale-100 shadow-lg shadow-gold/5"
+                    : "border-game-border bg-gray-50 opacity-40 grayscale"
+                  }`}
+              >
+                <span className="text-4xl">{badge.icon}</span>
+                <span className="text-[10px] font-black uppercase text-center w-20 leading-tight">
+                  {badge.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* The Path - Duolingo Curvy Style */}
@@ -67,6 +90,13 @@ export default function RoadmapPage() {
                   >
                     <span className="text-4xl">{isDone ? "✓" : m.icon}</span>
 
+                    {/* Badge Indicator on Milestone */}
+                    {m.badgeId && (
+                      <div className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-white border-4 border-gold text-xs shadow-lg animate-pulse">
+                        🎖️
+                      </div>
+                    )}
+
                     {/* Tooltip-style Label */}
                     <div className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xl bg-foreground px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white opacity-0 transition-opacity group-hover:opacity-100 shadow-xl">
                       {m.label}
@@ -82,25 +112,27 @@ export default function RoadmapPage() {
           </div>
         </section>
 
-        {/* Quick Actions Grid */}
+        {/* Updated Quick Actions (Boosters) */}
         <section className="mt-20">
-          <h2 className="mb-8 text-center text-xs font-black uppercase tracking-widest text-garnet/40 italic flex items-center justify-center gap-2">
+          <h2 className="mb-8 text-center text-xs font-black uppercase tracking-widest text-garnet/40 italic flex items-center justify-center gap-2 text-wrap px-4">
             <span className="h-[2px] flex-1 bg-game-border"></span>
-            Career Boosters
+            FSU Resources
             <span className="h-[2px] flex-1 bg-game-border"></span>
           </h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {quickLinks.map((link) => (
-              <Link
+              <a
                 key={link.title}
                 href={link.href}
-                className="btn-game-secondary group flex flex-col items-center gap-3 p-8 transition-all hover:border-gold hover:text-gold rounded-3xl"
+                target="_blank"
+                className="flex items-center gap-6 p-6 transition-all border-4 border-game-border rounded-3xl hover:border-gold group bg-white"
               >
-                <span className="text-4xl transition-transform group-hover:scale-125 group-active:scale-90">{link.icon}</span>
-                <span className="text-center text-[10px] font-black uppercase tracking-widest leading-tight">
-                  {link.title}
-                </span>
-              </Link>
+                <span className="text-4xl group-hover:scale-110 transition-transform">{link.icon}</span>
+                <div className="text-left">
+                  <h3 className="font-black text-garnet uppercase text-sm leading-none">{link.title}</h3>
+                  <p className="text-[10px] font-bold text-game-text-muted mt-1 uppercase tracking-widest">{link.description}</p>
+                </div>
+              </a>
             ))}
           </div>
         </section>
@@ -114,8 +146,6 @@ export default function RoadmapPage() {
           </p>
         </footer>
       </main>
-
-      <ChatSidebar />
     </div>
   );
 }

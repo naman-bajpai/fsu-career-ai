@@ -34,6 +34,12 @@ export function ChatSidebar() {
     };
 
     useEffect(() => {
+        const handleToggle = () => setIsOpen(true);
+        window.addEventListener("toggle-chat", handleToggle);
+        return () => window.removeEventListener("toggle-chat", handleToggle);
+    }, []);
+
+    useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
@@ -91,8 +97,8 @@ export function ChatSidebar() {
                                 className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
                             >
                                 <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm font-medium shadow-sm border-2 ${m.role === "user"
-                                        ? "bg-garnet text-white border-garnet-dark"
-                                        : "bg-white text-foreground border-game-border"
+                                    ? "bg-garnet text-white border-garnet-dark"
+                                    : "bg-white text-foreground border-game-border"
                                     }`}>
                                     {m.content}
                                 </div>

@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 import { student } from "../lib/dummy-data";
 
 const sidebarLinks = [
-  { href: "/", label: "Landing", icon: "🏠" },
+  { href: "/", label: "Dashboard", icon: "🏠" },
   { href: "/roadmap", label: "Path", icon: "🛤️" },
+  { href: "/resume-helper", label: "Resume", icon: "📄" },
   { href: "/applications", label: "Apps", icon: "📋" },
   { href: "/skills", label: "Skills", icon: "⚡" },
   { href: "/rewards", label: "Rewards", icon: "🎁" },
@@ -40,8 +41,8 @@ export function Nav() {
               key={link.href}
               href={link.href}
               className={`flex items-center gap-4 rounded-2xl px-6 py-4 transition-all border-2 ${isActive
-                  ? "border-garnet bg-garnet/5 text-garnet shadow-[0_4px_0_0_var(--fsu-garnet-dark)] -translate-y-[2px]"
-                  : "border-transparent text-game-text-muted hover:bg-gray-50 hover:border-game-border"
+                ? "border-garnet bg-garnet/5 text-garnet shadow-[0_4px_0_0_var(--fsu-garnet-dark)] -translate-y-[2px]"
+                : "border-transparent text-game-text-muted hover:bg-gray-50 hover:border-game-border"
                 }`}
             >
               <span className={`text-2xl ${isActive ? "scale-110" : ""}`}>{link.icon}</span>
@@ -55,14 +56,18 @@ export function Nav() {
 
       {/* Sidebar Footer: Student Stats */}
       <div className="p-6 border-t-2 border-game-border space-y-6">
-        <div className="grid grid-cols-2 gap-3">
-          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-orange-500/20 bg-orange-500/5 p-3">
-            <span className="text-xl">🔥</span>
-            <span className="mt-1 text-sm font-black text-orange-600">{student.streak}</span>
+        <div className="grid grid-cols-3 gap-2">
+          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-orange-500/20 bg-orange-500/5 p-2">
+            <span className="text-lg">🔥</span>
+            <span className="mt-1 text-xs font-black text-orange-600">{student.streak}</span>
           </div>
-          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-blue-500/20 bg-blue-500/5 p-3">
-            <span className="text-xl">💎</span>
-            <span className="mt-1 text-sm font-black text-blue-600">{student.points}</span>
+          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-blue-500/20 bg-blue-500/5 p-2">
+            <span className="text-lg">💎</span>
+            <span className="mt-1 text-xs font-black text-blue-600">{student.points}</span>
+          </div>
+          <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-gold/20 bg-gold/5 p-2">
+            <span className="text-lg">🎖️</span>
+            <span className="mt-1 text-xs font-black text-amber-600">2</span>
           </div>
         </div>
 

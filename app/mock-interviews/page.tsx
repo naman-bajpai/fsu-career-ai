@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { student } from "../lib/dummy-data";
+import { ResourcesSidebar } from "../components/ResourcesSidebar";
 
 const sampleSessions = [
   { id: 1, role: "Software Developer Intern", date: "Jan 15, 2026", score: 78, feedback: "Strong technical answers; practice STAR for behavioral." },
@@ -8,7 +9,7 @@ const sampleSessions = [
 
 export default function MockInterviewsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground lg:pr-80">
       <main className="mx-auto max-w-lg px-6 pb-24 pt-12">
         <section className="mb-10 text-center">
           <div className="mb-4 inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-garnet text-5xl shadow-xl shadow-garnet/20">
@@ -79,6 +80,7 @@ export default function MockInterviewsPage() {
           </p>
         </footer>
       </main>
+      <ResourcesSidebar page="interviews" />
     </div>
   );
 }

@@ -13,8 +13,8 @@ export default function RewardsPage() {
           <p className="mt-2 font-bold text-game-text-muted">Turn your hard work into FSU legendary rewards</p>
         </section>
 
-        {/* Balance Card */}
-        <div className="card-glass mb-10 overflow-hidden bg-gradient-to-br from-garnet to-garnet-dark p-6 text-white shadow-xl">
+        {/* Balance Card - Strengthened contrast */}
+        <div className="mb-10 overflow-hidden rounded-3xl bg-gradient-to-br from-garnet to-garnet-dark p-8 text-white shadow-2xl shadow-garnet/20 border-b-4 border-garnet-dark">
           <p className="text-xs font-black uppercase tracking-widest opacity-70">Current Balance</p>
           <div className="mt-2 flex items-baseline gap-2">
             <span className="text-5xl font-black tracking-tighter">{student.points}</span>

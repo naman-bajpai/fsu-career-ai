@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { skillsInProgress } from "../lib/dummy-data";
+import { skillsInProgress } from "../lib/dummy-data"; 
+import { ResourcesSidebar } from "../components/ResourcesSidebar";
 
 export default function SkillsPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground lg:pr-80">
       <main className="mx-auto max-w-lg px-6 pb-24 pt-12">
         <h1 className="text-2xl font-black text-garnet uppercase tracking-tighter">Skill Tree ⚡</h1>
         <p className="mt-1 text-xs font-black uppercase text-game-text-muted">Evolving into a professional</p>
@@ -36,6 +37,7 @@ export default function SkillsPage() {
           </div>
         </section>
       </main>
+      <ResourcesSidebar page="skills" />
     </div>
   );
 }

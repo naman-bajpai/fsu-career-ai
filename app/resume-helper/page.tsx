@@ -43,6 +43,8 @@ const initialSuggestions: Suggestion[] = [
   },
 ];
 
+import { ResourcesSidebar } from "../components/ResourcesSidebar";
+
 export default function ResumeHelperPage() {
   const [summary, setSummary] = useState("Student looking for internships");
   const [experience, setExperience] = useState([
@@ -66,7 +68,7 @@ export default function ResumeHelperPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground lg:pr-80">
       <div className="flex flex-col lg:flex-row h-screen">
         {/* Left Panel: Suggestions */}
         <aside className="w-full lg:w-1/3 border-r-2 border-game-border bg-gray-50/50 flex flex-col h-full overflow-hidden">
@@ -228,6 +230,7 @@ export default function ResumeHelperPage() {
           </div>
         </main>
       </div>
+      <ResourcesSidebar page="resume" />
     </div>
   );
 }

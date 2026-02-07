@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 };
 
 import { Nav } from "./components/Nav";
+import { ChatSidebar } from "./components/ChatSidebar";
 
 export default function RootLayout({
   children,
@@ -34,6 +35,7 @@ export default function RootLayout({
           <main className="flex-1 md:pl-64">
             {children}
           </main>
+          <ChatSidebar />
         </div>
       </body>
     </html>
