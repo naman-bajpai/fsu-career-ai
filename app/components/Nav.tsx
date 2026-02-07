@@ -41,11 +41,11 @@ export function Nav() {
       <div className="p-8 pb-6">
         <Link href="/" className="flex items-center gap-4 group">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-garnet text-white shadow-md group-hover:-rotate-3 transition-transform">
-            <span className="text-2xl font-black italic tracking-tighter">F</span>
+            <span className="text-xl font-black italic tracking-tighter -ml-0.5">FSU</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-black leading-none text-garnet uppercase tracking-tighter">Seminole</span>
-            <span className="text-[10px] font-bold text-gold uppercase tracking-[0.2em] mt-1">Journey</span>
+            <span className="text-xl font-black leading-none text-garnet uppercase tracking-tighter">Spear Career</span>
+            <span className="text-[15px] font-black italic leading-none text-gold uppercase tracking-[0.2em] mt-0.5">AI</span>
           </div>
         </Link>
       </div>

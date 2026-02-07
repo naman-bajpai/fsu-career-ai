@@ -82,7 +82,7 @@ export default function RoadmapPage() {
             {milestones.map((m, i) => {
               const isDone = m.done;
               const isNext = nextMilestone?.id === m.id;
-              const isLocked = !isDone && !isNext && milestones.slice(0, i).some((prev) => !prev.done);
+              const isLocked = !isDone && !isNext && milestones.findIndex(ms => ms.id === nextMilestone?.id) < i;
 
               const offsets = ["0px", "80px", "0px", "-80px"];
               const offset = offsets[i % offsets.length];

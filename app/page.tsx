@@ -51,7 +51,7 @@ export default function DashboardPage() {
         <header className="mb-14">
           <div className="flex items-center gap-6 mb-8">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-garnet text-white shadow-lg transform -rotate-2 hover:rotate-0 transition-all duration-300">
-              <span className="text-4xl font-black italic tracking-tighter">F</span>
+              <span className="text-3xl font-black italic tracking-tighter -ml-1">FSU</span>
             </div>
             <div>
               <h1 className="text-4xl font-black text-garnet uppercase tracking-tighter leading-none mb-1">Seminole Hub</h1>

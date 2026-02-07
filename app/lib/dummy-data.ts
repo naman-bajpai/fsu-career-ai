@@ -5,8 +5,8 @@ export const student = {
   major: "Computer Science",
   level: 4,
   levelLabel: "Rising Star",
-  points: 1240,
-  xp: 1240, // same as points, displayed as XP in game UI
+  points: 1072,
+  xp: 1072, // same as points, displayed as XP in game UI
   pointsToNextLevel: 1600,
   streak: 5,
   dailyGoalXp: 20,
@@ -22,7 +22,10 @@ export const milestones = [
   { id: "resume", label: "Build your resume", done: true, points: 50, icon: "📄", href: "/resume-helper" },
   { id: "linkedin", label: "Complete LinkedIn profile", done: true, points: 50, icon: "💼", href: "/linkedin" },
   { id: "first-sim", label: "Complete 1 job simulation", done: true, points: 100, icon: "🎯", href: "/job-simulation", badgeId: "sim-master" },
+  { id: "negotiate", label: "How to Negotiate Salary", done: false, points: 100, icon: "💰", href: "/learn" },
+  { id: "follow-up", label: "Follow-Up Mastery", done: true, points: 75, icon: "📧", href: "/learn" },
   { id: "mock-interview", label: "Do an AI mock interview", done: false, points: 150, icon: "🎤", href: "/mock-interviews", badgeId: "interview-pro" },
+  { id: "jd-decode", label: "Decoding Job Descriptions", done: false, points: 75, icon: "🔍", href: "/learn" },
   { id: "projects", label: "Complete a technical project", done: false, points: 200, icon: "💻", href: "/skills", badgeId: "project-pioneer" },
   { id: "three-apps", label: "Apply to 3 internships", done: false, points: 75, icon: "📋", href: "/applications" },
 ];
@@ -69,7 +72,7 @@ export const pageResources = {
 };
 
 export const skillsInProgress = [
-  { name: "Technical Interviewing", progress: 65 },
+  { name: "Technical Interviewing", progress: 67 },
   { name: "Resume Optimization", progress: 90 },
   { name: "LinkedIn Networking", progress: 40 },
   { name: "Project Management", progress: 25 },
