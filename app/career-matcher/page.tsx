@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { careerQuizQuestions, careerPaths } from "../lib/dummy-data";
+import { IconCompass, IconTarget } from "../components/Icons";
 
 type CareerMatch = {
     id: string;
@@ -66,8 +67,8 @@ export default function CareerMatcherPage() {
             <main className="mx-auto max-w-lg px-6 pb-24 pt-12">
                 {/* Header */}
                 <header className="mb-10 text-center">
-                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-garnet to-garnet-dark text-3xl text-white shadow-lg">
-                        🧭
+                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-garnet to-garnet-dark text-white shadow-lg">
+                        <IconCompass className="w-8 h-8" />
                     </div>
                     <h1 className="text-3xl font-black text-garnet uppercase tracking-tighter">
                         Career Path Matcher
@@ -118,7 +119,9 @@ export default function CareerMatcherPage() {
                     <>
                         {/* Results */}
                         <div className="card-glass p-8 mb-8 text-center">
-                            <div className="text-5xl mb-4">🎯</div>
+                            <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-gold to-gold-dark text-white mb-4">
+                                <IconTarget className="w-8 h-8" />
+                            </div>
                             <h2 className="text-2xl font-black text-garnet mb-2">Your Career Matches</h2>
                             <p className="text-sm text-game-text-muted">
                                 Based on your responses, here are your top career paths

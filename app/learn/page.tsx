@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { hiddenCurriculumLessons, student } from "../lib/dummy-data";
+import { IconBook } from "../components/Icons";
 
 export default function LearnPage() {
     const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
@@ -16,7 +17,9 @@ export default function LearnPage() {
                 {/* Header */}
                 <header className="mb-10">
                     <div className="flex items-center gap-4 mb-3">
-                        <span className="text-4xl">📚</span>
+                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-garnet to-garnet-dark text-white shadow-md">
+                            <IconBook className="w-6 h-6" />
+                        </div>
                         <h1 className="text-3xl font-black text-garnet uppercase tracking-tighter">
                             Hidden Curriculum
                         </h1>
@@ -58,8 +61,8 @@ export default function LearnPage() {
                                 onClick={() => lesson.unlocked && setSelectedLesson(lesson.id)}
                                 disabled={!lesson.unlocked}
                                 className={`w-full text-left card-glass p-5 transition-all ${lesson.unlocked
-                                        ? "hover:border-garnet cursor-pointer"
-                                        : "opacity-50 grayscale cursor-not-allowed"
+                                    ? "hover:border-garnet cursor-pointer"
+                                    : "opacity-50 grayscale cursor-not-allowed"
                                     } ${lesson.completed ? "border-gold/30 bg-gold/5" : ""}`}
                             >
                                 <div className="flex items-start gap-4">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { barrierCategories, supportResources } from "../lib/dummy-data";
+import { IconLifebuoy, IconChat } from "../components/Icons";
 
 export default function SupportPage() {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -15,8 +16,8 @@ export default function SupportPage() {
             <main className="mx-auto max-w-lg px-6 pb-24 pt-12">
                 {/* Header */}
                 <header className="mb-10 text-center">
-                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-3xl text-white shadow-lg">
-                        🆘
+                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg">
+                        <IconLifebuoy className="w-8 h-8" />
                     </div>
                     <h1 className="text-3xl font-black text-garnet uppercase tracking-tighter">
                         Barrier Support Hub
@@ -43,8 +44,8 @@ export default function SupportPage() {
                         <button
                             onClick={() => setSelectedCategory(null)}
                             className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${selectedCategory === null
-                                    ? "bg-garnet text-white"
-                                    : "bg-game-border text-game-text-muted hover:bg-garnet/10"
+                                ? "bg-garnet text-white"
+                                : "bg-game-border text-game-text-muted hover:bg-garnet/10"
                                 }`}
                         >
                             All
@@ -54,8 +55,8 @@ export default function SupportPage() {
                                 key={cat.id}
                                 onClick={() => setSelectedCategory(cat.id)}
                                 className={`px-4 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2 ${selectedCategory === cat.id
-                                        ? "bg-garnet text-white"
-                                        : "bg-game-border text-game-text-muted hover:bg-garnet/10"
+                                    ? "bg-garnet text-white"
+                                    : "bg-game-border text-game-text-muted hover:bg-garnet/10"
                                     }`}
                             >
                                 <span>{cat.icon}</span>
