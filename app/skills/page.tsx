@@ -31,7 +31,7 @@ export default function SkillsPage() {
                   </div>
                   <span className="text-sm font-black text-gold tracking-tighter">{s.progress}%</span>
                 </div>
-                <div className="progress-container h-3 shadow-inner border-2 border-game-border/50">
+                <div className="progress-container h-2.5">
                   <div
                     className="progress-fill !bg-gradient-to-r !from-gold !to-gold-dark"
                     style={{ width: `${s.progress}%` }}
@@ -41,7 +41,7 @@ export default function SkillsPage() {
             ))}
           </ul>
 
-          <div className="mt-14 rounded-[2rem] bg-garnet text-white p-8 shadow-[0_8px_0_0_hsl(346,43%,25%)] relative group/tip">
+          <div className="mt-14 rounded-2xl bg-garnet text-white p-8 shadow-xl relative group/tip">
             <div className="absolute -top-4 -right-4 text-4xl transform rotate-12 group-hover/tip:rotate-0 transition-transform">💡</div>
             <p className="text-[10px] font-black text-gold uppercase tracking-[0.3em] mb-2">Professional Insight</p>
             <p className="text-xs font-bold leading-relaxed">

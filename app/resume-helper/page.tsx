@@ -71,8 +71,8 @@ export default function ResumeHelperPage() {
     <div className="min-h-screen bg-background text-foreground lg:pr-80">
       <div className="flex flex-col lg:flex-row h-screen">
         {/* Left Panel: Suggestions */}
-        <aside className="w-full lg:w-1/3 border-r-2 border-game-border bg-gray-50/50 flex flex-col h-full overflow-hidden">
-          <div className="p-8 border-b-2 border-game-border bg-white">
+        <aside className="w-full lg:w-1/3 border-r border-game-border bg-gray-50/50 flex flex-col h-full overflow-hidden">
+          <div className="p-8 border-b border-game-border bg-white">
             <h1 className="text-2xl font-black text-garnet uppercase tracking-tighter">AI Reviewer 🤖</h1>
             <p className="text-xs font-bold text-game-text-muted uppercase mt-1">Found {suggestions.length} potential upgrades</p>
 
@@ -93,7 +93,7 @@ export default function ResumeHelperPage() {
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
             {suggestions.length > 0 ? (
               suggestions.map((s) => (
-                <div key={s.id} className="card-glass p-5 border-l-8 border-l-blue-500 animate-in slide-in-from-left duration-300">
+                <div key={s.id} className="card-glass p-5 border-l-4 border-l-blue-500 animate-in slide-in-from-left duration-300">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
@@ -131,7 +131,7 @@ export default function ResumeHelperPage() {
 
         {/* Right Panel: Resume Editor */}
         <main className="flex-1 bg-white flex flex-col h-full overflow-hidden">
-          <div className="p-8 border-b-2 border-game-border flex items-center justify-between">
+          <div className="p-8 border-b border-game-border flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="h-3 w-3 rounded-full bg-red-400"></span>
               <span className="h-3 w-3 rounded-full bg-yellow-400"></span>
@@ -146,7 +146,7 @@ export default function ResumeHelperPage() {
 
           <div className="flex-1 overflow-y-auto bg-gray-100 p-12">
             <div className="mx-auto max-w-2xl bg-white shadow-2xl p-16 font-serif text-sm">
-              <div className="text-center border-b-2 border-black pb-8 mb-8">
+              <div className="text-center border-b border-black pb-8 mb-8">
                 <h2 className="text-3xl font-black uppercase tracking-tight text-black">{student.name.toUpperCase()}</h2>
                 <p className="mt-2 font-medium">Tallahassee, FL | jordan@fsu.edu | (850) 123-4567</p>
                 <div className="flex justify-center gap-4 mt-2 font-bold text-blue-700 underline underline-offset-4">

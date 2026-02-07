@@ -68,7 +68,7 @@ export function ChatSidebar() {
             <aside className={`fixed right-0 top-0 z-50 h-full w-[350px] bg-white shadow-2xl transition-transform duration-300 ease-out ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
                 <div className="flex h-full flex-col">
                     {/* Header */}
-                    <div className="flex items-center justify-between border-b-2 border-game-border p-6 bg-white">
+                    <div className="flex items-center justify-between border-b border-game-border p-6 bg-white">
                         <div className="flex items-center gap-3">
                             <div className="h-10 w-10 rounded-xl bg-garnet flex items-center justify-center text-white">
                                 <span className="font-black italic">A</span>
@@ -96,7 +96,7 @@ export function ChatSidebar() {
                                 key={i}
                                 className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
                             >
-                                <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm font-medium shadow-sm border-2 ${m.role === "user"
+                                <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm font-medium shadow-sm border ${m.role === "user"
                                     ? "bg-garnet text-white border-garnet-dark"
                                     : "bg-white text-foreground border-game-border"
                                     }`}>
@@ -107,7 +107,7 @@ export function ChatSidebar() {
                     </div>
 
                     {/* Input Area (Cursor Agent style) */}
-                    <div className="p-6 border-t-2 border-game-border bg-white">
+                    <div className="p-6 border-t border-game-border bg-white">
                         <div className="relative">
                             <textarea
                                 value={input}
@@ -119,7 +119,7 @@ export function ChatSidebar() {
                                     }
                                 }}
                                 placeholder="Ask about your resume, roadmap, or FSU services..."
-                                className="w-full resize-none rounded-xl border-2 border-game-border p-3 pr-12 text-sm font-medium focus:border-garnet focus:outline-none transition-colors min-h-[80px]"
+                                className="w-full resize-none rounded-xl border border-game-border p-3 pr-12 text-sm font-medium focus:border-garnet focus:outline-none transition-colors min-h-[80px]"
                             />
                             <button
                                 onClick={handleSend}

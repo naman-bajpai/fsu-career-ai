@@ -16,14 +16,14 @@ export function ResourcesSidebar({ page }: ResourcesSidebarProps) {
             {/* Floating Toggle Button for Mobile/Tablet or if preferred */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-32 right-6 z-40 md:hidden flex h-14 w-14 items-center justify-center rounded-2xl bg-gold text-white shadow-[0_6px_0_0_#b5a072] transition-all active:translate-y-1 active:shadow-none"
+                className="fixed bottom-32 right-6 z-40 md:hidden flex h-14 w-14 items-center justify-center rounded-2xl bg-gold text-white shadow-xl transition-all active:scale-95"
             >
                 <span className="text-2xl">📚</span>
             </button>
 
             {/* Sidebar Desktop (Fixed on right) or Mobile (Drawer) */}
             <aside
-                className={`fixed right-0 top-0 z-40 h-full w-80 border-l-4 border-gold/30 bg-white p-8 transition-transform duration-300 ease-in-out lg:translate-x-0 ${isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
+                className={`fixed right-0 top-0 z-40 h-full w-80 border-l border-gold/20 bg-white p-8 transition-transform duration-300 ease-in-out lg:translate-x-0 ${isOpen ? "translate-x-0" : "translate-x-full lg:translate-x-0"
                     } flex flex-col`}
             >
                 <div className="mb-8 flex items-center justify-between">
@@ -42,7 +42,7 @@ export function ResourcesSidebar({ page }: ResourcesSidebarProps) {
                             href={res.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group block rounded-2xl border-2 border-game-border p-4 transition-all hover:-translate-y-1 hover:border-gold hover:bg-gold/5 active:translate-y-0"
+                            className="group block rounded-xl border border-game-border p-4 transition-all hover:-translate-y-1 hover:border-gold hover:bg-gold/5 active:translate-y-0"
                         >
                             <div className="flex items-center justify-between mb-1">
                                 <span className="text-[10px] font-black uppercase text-gold tracking-widest">{page.toUpperCase()}</span>
@@ -63,7 +63,7 @@ export function ResourcesSidebar({ page }: ResourcesSidebarProps) {
                 <div className="mt-8 border-t-2 border-game-border pt-6 space-y-4">
                     <button
                         onClick={() => window.dispatchEvent(new CustomEvent("toggle-chat"))}
-                        className="flex w-full items-center gap-4 rounded-2xl border-2 border-garnet bg-garnet/5 p-4 transition-all hover:bg-garnet/10 active:translate-y-1 shadow-[0_4px_0_0_rgba(120,47,64,0.1)]"
+                        className="flex w-full items-center gap-4 rounded-xl border border-garnet/20 bg-garnet/5 p-4 transition-all hover:bg-garnet/10 active:scale-95 shadow-sm"
                     >
                         <span className="text-2xl">🤖</span>
                         <div className="text-left">
@@ -72,12 +72,12 @@ export function ResourcesSidebar({ page }: ResourcesSidebarProps) {
                         </div>
                     </button>
 
-                    <div className="rounded-2xl border-2 border-game-border bg-gray-50 p-5 text-center">
+                    <div className="rounded-xl border border-game-border bg-gray-50 p-5 text-center">
                         <p className="text-[10px] font-black uppercase tracking-widest text-game-text-muted mb-2">Need more help?</p>
                         <a
                             href="https://career.fsu.edu/about-us/contact-us"
                             target="_blank"
-                            className="inline-block w-full rounded-xl bg-garnet py-3 text-xs font-black text-white uppercase shadow-[0_4px_0_0_#5a2330] hover:bg-garnet-dark transition-colors"
+                            className="inline-block w-full rounded-lg bg-garnet py-3 text-xs font-bold text-white uppercase shadow-lg hover:bg-garnet-dark transition-colors"
                         >
                             Contact Career Center
                         </a>

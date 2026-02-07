@@ -15,7 +15,7 @@ export default function RoadmapPage() {
           <div className="mb-6 flex items-center justify-between">
             <div>
               <h2 className="text-xl font-black text-garnet uppercase tracking-tighter">Daily Mission</h2>
-              <p className="text-[10px] font-black text-game-text-muted uppercase tracking-widest mt-1">XP Surge Active ⚡</p>
+              <p className="text-[10px] font-bold text-game-text-muted uppercase tracking-widest mt-1">XP Surge Active ⚡</p>
             </div>
             <div className="text-right">
               <span className="text-2xl font-black text-gold">
@@ -49,14 +49,14 @@ export default function RoadmapPage() {
             {badges.map((badge) => (
               <div
                 key={badge.id}
-                className={`flex-shrink-0 flex flex-col items-center gap-3 p-6 rounded-[2rem] border-4 transition-all hover:scale-105 ${badge.unlocked
-                  ? "border-gold bg-white shadow-xl shadow-gold/10"
+                className={`flex-shrink-0 flex flex-col items-center gap-3 p-6 rounded-3xl border transition-all hover:scale-105 ${badge.unlocked
+                  ? "border-gold/30 bg-white shadow-lg"
                   : "border-game-border bg-gray-50/50 opacity-40 grayscale"
                   }`}
               >
                 <div className="relative">
-                  <span className="text-5xl block">{badge.icon}</span>
-                  {badge.unlocked && <div className="absolute -top-1 -right-1 h-4 w-4 bg-green-500 rounded-full border-2 border-white"></div>}
+                  <span className="text-4xl block">{badge.icon}</span>
+                  {badge.unlocked && <div className="absolute -top-1 -right-1 h-3 w-3 bg-green-500 rounded-full border-2 border-white"></div>}
                 </div>
                 <span className="text-[10px] font-black uppercase text-center w-24 leading-tight tracking-tighter text-garnet">
                   {badge.name}
@@ -95,26 +95,26 @@ export default function RoadmapPage() {
                 >
                   <Link
                     href={isLocked ? "#" : m.href}
-                    className={`relative flex h-28 w-28 items-center justify-center rounded-[2.5rem] border-4 transition-all duration-300 ${isDone
-                      ? "bg-gold border-gold-dark text-white shadow-[0_10px_0_0_hsl(42,42%,58%)]"
+                    className={`relative flex h-24 w-24 items-center justify-center rounded-2xl border transition-all duration-300 ${isDone
+                      ? "bg-gold border-gold-dark text-white shadow-lg"
                       : isNext
-                        ? "bg-garnet border-garnet-dark text-white shadow-[0_10px_0_0_hsl(346,43%,25%)] animate-bounce-subtle"
-                        : "bg-white border-game-border text-game-text-muted shadow-[0_10px_0_0_hsl(220,13%,85%)]"
-                      } ${isLocked ? "cursor-not-allowed grayscale-[0.8] opacity-60" : "hover:scale-110 active:translate-y-2 active:shadow-none"}`}
+                        ? "bg-garnet border-garnet-dark text-white shadow-xl shadow-garnet/20 animate-bounce-subtle"
+                        : "bg-white border-game-border text-game-text-muted shadow-md"
+                      } ${isLocked ? "cursor-not-allowed grayscale-[0.8] opacity-60" : "hover:scale-110 active:scale-95 active:shadow-none"}`}
                   >
-                    <span className="text-5xl drop-shadow-lg">{isDone ? "✓" : m.icon}</span>
+                    <span className="text-4xl drop-shadow-lg">{isDone ? "✓" : m.icon}</span>
 
                     {m.badgeId && (
-                      <div className="absolute -top-3 -right-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-white border-4 border-gold text-lg shadow-xl animate-pulse z-10">
+                      <div className="absolute -top-2 -right-2 flex h-8 w-8 items-center justify-center rounded-xl bg-white border-2 border-gold text-sm shadow-lg animate-pulse z-10">
                         🎖️
                       </div>
                     )}
 
                     {/* Progress floating label for active task */}
                     {isNext && (
-                      <div className="absolute -top-16 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-2xl bg-garnet px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-2xl animate-in slide-in-from-bottom-2">
+                      <div className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xl bg-garnet px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-xl animate-in slide-in-from-bottom-2">
                         START MISSION
-                        <div className="absolute -bottom-2 left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 bg-garnet" />
+                        <div className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-garnet" />
                       </div>
                     )}
                   </Link>
@@ -142,12 +142,12 @@ export default function RoadmapPage() {
                 key={link.title}
                 href={link.href}
                 target="_blank"
-                className="flex items-center gap-6 p-6 transition-all border-4 border-game-border rounded-3xl hover:border-gold group bg-white"
+                className="flex items-center gap-6 p-6 transition-all border border-game-border rounded-2xl hover:border-gold group bg-white shadow-sm hover:shadow-md"
               >
-                <span className="text-4xl group-hover:scale-110 transition-transform">{link.icon}</span>
+                <span className="text-3xl group-hover:scale-110 transition-transform">{link.icon}</span>
                 <div className="text-left">
-                  <h3 className="font-black text-garnet uppercase text-sm leading-none">{link.title}</h3>
-                  <p className="text-[10px] font-bold text-game-text-muted mt-1 uppercase tracking-widest">{link.description}</p>
+                  <h3 className="font-bold text-garnet uppercase text-sm leading-none">{link.title}</h3>
+                  <p className="text-[10px] font-medium text-game-text-muted mt-1 uppercase tracking-widest">{link.description}</p>
                 </div>
               </a>
             ))}
